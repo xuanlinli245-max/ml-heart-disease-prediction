@@ -1,0 +1,49 @@
+# ============================================
+# Heart Disease Prediction - Configuration
+# ============================================
+
+data:
+  raw_path: "data/raw/heart.csv"
+  test_size: 0.2
+  random_state: 42
+  target_column: "HeartDisease"
+
+preprocessing:
+  outlier_threshold: 1
+  numerical_columns:
+    - Age
+    - RestingBP
+    - Cholesterol
+    - MaxHR
+    - Oldpeak
+  categorical_columns:
+    - Sex
+    - ChestPainType
+    - RestingECG
+    - ExerciseAngina
+    - ST_Slope
+
+models:
+  logistic_regression:
+    solver: "lbfgs"
+    max_iter: 200
+    random_state: 42
+  knn:
+    n_neighbors: 5
+  svc:
+    kernel: "rbf"
+    gamma: "auto"
+    probability: true
+    random_state: 42
+
+voting:
+  voting_type: "soft"
+  weights: [0.8, 0.1, 0.1]
+
+cross_validation:
+  cv: 5
+  scoring: "recall"
+
+output:
+  model_path: "models/voting_classifier.pkl"
+  log_path: "logs/train.log"
