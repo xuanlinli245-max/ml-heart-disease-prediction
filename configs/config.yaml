@@ -1,0 +1,11 @@
+data:
+  path: data/raw/heart.csv
+  test_size: 0.2
+  random_state: 42
+
+cv:
+  n_splits: 5
+
+output:
+  model_path: models/model.joblib
+  metrics_path: reports/metrics.json
